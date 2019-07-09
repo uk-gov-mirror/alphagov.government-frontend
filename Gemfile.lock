@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/alphagov/gds-api-adapters
+  revision: f1790d8b8e251e75975c43ba2fa303e2dff5cb95
+  branch: forward-user-organisation-id
+  specs:
+    gds-api-adapters (59.5.1)
+      addressable
+      link_header
+      null_logger
+      plek (>= 1.9.0)
+      rack-cache
+      rest-client (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -94,13 +107,6 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
-    gds-api-adapters (59.5.1)
-      addressable
-      link_header
-      null_logger
-      plek (>= 1.9.0)
-      rack-cache
-      rest-client (~> 2.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     govuk-lint (3.11.4)
@@ -370,7 +376,7 @@ DEPENDENCIES
   capybara
   dalli
   faker
-  gds-api-adapters (~> 59.5)
+  gds-api-adapters!
   govuk-lint
   govuk_ab_testing (~> 2.4)
   govuk_app_config (~> 1.18)
