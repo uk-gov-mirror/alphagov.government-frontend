@@ -56,7 +56,11 @@ private
   end
 
   def load_content_item
-    content_item = Services.content_store.content_item(content_item_path)
+    if content_item_path = "/test/layouts/spike"
+      content_item = JSON.parse(Rails.root.join("lib", "test_layouts", "spike.json"))
+    else
+      content_item = Services.content_store.content_item(content_item_path)
+    end
 
     if Services.feature_toggler.use_recommended_related_links?(content_item['links'], request.headers)
       content_item['links']['ordered_related_items'] = content_item['links'].fetch('suggested_ordered_related_items', [])
