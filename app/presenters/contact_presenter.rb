@@ -22,9 +22,9 @@ class ContactPresenter < ContentItemPresenter
     contact_form_links = content_item["details"]["contact_form_links"] || []
     contact_form_links.map do |link|
       {
-        url: link['link'],
-        title: link['title'],
-        description: link['description'].try(:html_safe)
+        url: link["link"],
+        title: link["title"],
+        description: link["description"].try(:html_safe),
       }
     end
   end
@@ -37,10 +37,10 @@ class ContactPresenter < ContentItemPresenter
     phone_number_groups.map do |group|
       {
         numbers: phone_numbers_in_group(group),
-        title: group['title'],
-        description: group['description'].try(:strip).try(:html_safe),
-        opening_times: group['open_hours'].try(:strip).try(:html_safe),
-        best_time_to_call: group['best_time_to_call'].try(:strip).try(:html_safe)
+        title: group["title"],
+        description: group["description"].try(:strip).try(:html_safe),
+        opening_times: group["open_hours"].try(:strip).try(:html_safe),
+        best_time_to_call: group["best_time_to_call"].try(:strip).try(:html_safe),
       }
     end
   end
@@ -52,15 +52,15 @@ class ContactPresenter < ContentItemPresenter
   def post
     post_address_groups.map do |group|
       details = {
-        description: group['description'].try(:strip).try(:html_safe),
+        description: group["description"].try(:strip).try(:html_safe),
         v_card: [
-          v_card_part('fn', group['title']),
-          v_card_part('street-address', group['street_address']),
-          v_card_part('locality', group['locality']),
-          v_card_part('region', group['region']),
-          v_card_part('postal-code', group['postal_code']),
-          v_card_part('country-name', group['world_location']),
-        ]
+          v_card_part("fn", group["title"]),
+          v_card_part("street-address", group["street_address"]),
+          v_card_part("locality", group["locality"]),
+          v_card_part("region", group["region"]),
+          v_card_part("postal-code", group["postal_code"]),
+          v_card_part("country-name", group["world_location"]),
+        ],
       }
 
       details[:v_card].select! { |v| v[:value].present? }
@@ -75,9 +75,9 @@ class ContactPresenter < ContentItemPresenter
   def email
     email_address_groups.map do |group|
       details = {
-        description: group['description'].try(:strip).try(:html_safe),
-        email: group['email'].strip,
-        v_card: [v_card_part('fn', group['title'])],
+        description: group["description"].try(:strip).try(:html_safe),
+        email: group["email"].strip,
+        v_card: [v_card_part("fn", group["title"])],
       }
 
       details[:v_card].select! { |v| v[:value].present? }
@@ -121,21 +121,21 @@ private
   def phone_numbers_in_group(group)
     [
       {
-        label: 'Telephone',
-        number: group['number']
+        label: "Telephone",
+        number: group["number"],
       },
       {
-        label: 'Textphone',
-        number: group['textphone']
+        label: "Textphone",
+        number: group["textphone"],
       },
       {
-        label: 'Outside UK',
-        number: group['international_phone']
+        label: "Outside UK",
+        number: group["international_phone"],
       },
       {
-        label: 'Fax',
-        number: group['fax']
-      }
+        label: "Fax",
+        number: group["fax"],
+      },
     ].select { |n| n[:number].present? }
   end
 
@@ -172,7 +172,7 @@ private
   def v_card_part(v_card_class, value)
     {
       v_card_class: v_card_class,
-      value: value.try(:strip).try(:html_safe)
+      value: value.try(:strip).try(:html_safe),
     }
   end
 
@@ -193,7 +193,7 @@ private
     related.map do |link|
       {
         title: link["title"],
-        url:  link["base_path"]
+        url:  link["base_path"],
       }
     end
   end
@@ -203,7 +203,7 @@ private
     quick.map do |link|
       {
         title: link["title"],
-        url:  link["url"]
+        url:  link["url"],
       }
     end
   end
