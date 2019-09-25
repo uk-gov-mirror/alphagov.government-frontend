@@ -16,6 +16,12 @@
   <div class="govuk-grid-column-two-thirds">
 
     <% body = capture do %>
+      <%if @content_item.webchat_provider == "k2c"%>
+          <p>
+            <%= @content_item.leadingpara_body %>
+          </p>
+      <% end %>
+
       <% if @content_item.online_form_links.any? %>
         <h2 id="online-forms-title">Online</h2>
         <% @content_item.online_form_links.each do |link| %>

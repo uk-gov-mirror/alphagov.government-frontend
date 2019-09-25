@@ -5,7 +5,12 @@ bundle install
 function set_env() {
   export GOVUK_APP_DOMAIN=www.$1
   export GOVUK_WEBSITE_ROOT=https://www.$1
+  # uncomment below for --live
   export PLEK_SERVICE_CONTENT_STORE_URI=${PLEK_SERVICE_CONTENT_STORE_URI-https://test:bla@www.$1/api}
+
+  #uncomment below for --integration
+  #export PLEK_SERVICE_CONTENT_STORE_URI=${PLEK_SERVICE_CONTENT_STORE_URI-https://betademo:nottobeshared@www.$1/api}
+
   export PLEK_SERVICE_RUMMAGER_URI=${PLEK_SERVICE_RUMMAGER_URI-https://www.$1/api}
   export PLEK_SERVICE_SEARCH_URI=${PLEK_SERVICE_SEARCH_URI-https://www.$1/api}
 }
