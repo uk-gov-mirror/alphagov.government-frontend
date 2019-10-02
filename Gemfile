@@ -8,7 +8,7 @@ gem "gds-api-adapters", "~> 60.0"
 gem "govuk_ab_testing", "~> 2.4"
 gem "govuk_app_config", "~> 2.0"
 gem "govuk_frontend_toolkit", "~> 8.2.0"
-gem "govuk_publishing_components", "~> 21.1.1"
+gem "govuk_publishing_components", "~> 21.3.0"
 gem "htmlentities", "~> 4.3"
 gem "plek", "~> 3.0"
 gem "rack_strip_client_ip", "~> 0.0.2"
@@ -39,5 +39,5 @@ group :test do
   gem "govuk_test"
   gem "minitest-reporters"
   gem "mocha"
-  gem "webmock", "~> 3.7.4", require: false
+  gem "webmock", "~> 3.7.6", require: false
 end
