@@ -3,11 +3,6 @@
 $govuk-use-legacy-palette: true;
 $govuk-typography-use-rem: false;
 
-// govuk_frontend_toolkit dependencies
-@import "typography";
-@import "colours";
-@import "grid_layout";
-
 // Components from govuk_publishing_components gem
 @import 'govuk_publishing_components/all_components';
 
@@ -18,6 +13,7 @@ $govuk-typography-use-rem: false;
 // helpers for common page elements
 @import 'helpers/sidebar-with-body';
 @import 'helpers/organisation-links';
+@import 'helpers/organisation-logos';
 @import 'helpers/parts';
 @import 'helpers/add-title-margin';
 @import "helpers/content-bottom-margin";

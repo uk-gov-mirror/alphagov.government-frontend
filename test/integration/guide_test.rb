@@ -81,16 +81,67 @@ class GuideTest < ActionDispatch::IntegrationTest
     setup_and_visit_content_item("guide")
     faq_schema = find_structured_data(page, "FAQPage")
 
-    assert_equal faq_schema["headline"], @content_item["title"]
-    assert_not_equal faq_schema["mainEntity"], []
+    assert_equal faq_schema["@type"], "FAQPage"
+    assert_equal faq_schema["headline"], "The national curriculum"
+
+    q_and_as = faq_schema["mainEntity"]
+    answers = q_and_as.map { |q_and_a| q_and_a["acceptedAnswer"] }
+
+    chapter_titles = [
+      "Overview",
+      "Key stage 1 and 2",
+      "Key stage 3 and 4",
+      "Other compulsory subjects",
+    ]
+    assert_equal chapter_titles, (q_and_as.map { |q_and_a| q_and_a["name"] })
+
+    guide_part_urls = [
+      "https://www.test.gov.uk/national-curriculum",
+      "https://www.test.gov.uk/national-curriculum/key-stage-1-and-2",
+      "https://www.test.gov.uk/national-curriculum/key-stage-3-and-4",
+      "https://www.test.gov.uk/national-curriculum/other-compulsory-subjects",
+    ]
+    assert_equal guide_part_urls, (q_and_as.map { |q_and_a| q_and_a["url"] })
+    assert_equal guide_part_urls, (answers.map { |answer| answer["url"] })
   end
 
-  test "guide chapters show the faq schema" do
+  test "guide chapters do not show the faq schema" do
     setup_and_visit_part_in_guide
     faq_schema = find_structured_data(page, "FAQPage")
 
-    assert_equal faq_schema["headline"], @content_item["title"]
-    assert_not_equal faq_schema["mainEntity"], []
+    assert_nil faq_schema
+  end
+
+  # The schema config is in /config/machine_readable/voting-in-the-uk.yml
+  test "voting in the UK guide shows hard coded FAQ schema" do
+    setup_and_visit_voting_guide
+
+    faq_schema = find_structured_data(page, "FAQPage")
+    q_and_as = faq_schema["mainEntity"]
+
+    assert_equal faq_schema["@type"], "FAQPage"
+    assert_equal faq_schema["headline"], "How to vote"
+    assert_equal faq_schema["description"], "<p>You need to <a href=\"/register-to-vote\">register to vote</a> before you can vote in UK elections or referendums.</p> <p>If you’re eligible, you can vote in person on the day of the election at a named polling station. You can also apply for a postal or proxy vote instead.</p>\n"
+
+    assert_equal 8, q_and_as.count
+  end
+
+  test "voting in the UK guide shows all chapters on a single page" do
+    content_item = setup_and_visit_voting_guide
+    part_titles = content_item["details"]["parts"].map { |part| part["title"] }
+
+    part_titles.each do |part_title|
+      assert page.has_css? "h1", text: part_title
+    end
+  end
+
+  def setup_and_visit_voting_guide
+    @content_item = get_content_example("guide").tap do |item|
+      item["base_path"] = "/voting-in-the-uk"
+      item["content_id"] = "9315bc67-33e7-42e9-8dea-e022f56dabfa"
+      content_store_has_item(item["base_path"], item.to_json)
+      visit_with_cachebust(item["base_path"])
+    end
   end
 
   def setup_and_visit_part_in_guide

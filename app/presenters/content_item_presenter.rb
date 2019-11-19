@@ -5,6 +5,7 @@ class ContentItemPresenter
   attr_reader :content_item,
               :requested_content_item_path,
               :base_path,
+              :slug,
               :title,
               :description,
               :schema_name,
@@ -21,6 +22,7 @@ class ContentItemPresenter
     @content_item = content_item
     @requested_content_item_path = requested_content_item_path
     @base_path = content_item["base_path"]
+    @slug = @base_path.delete_prefix("/") if @base_path
     @title = content_item["title"]
     @description = content_item["description"]
     @schema_name = content_item["schema_name"]
@@ -76,6 +78,11 @@ class ContentItemPresenter
 
   def cache_control_public?
     !content_item.cache_control.private?
+  end
+
+  def render_guide_as_single_page?
+    # /voting-in-the-uk
+    content_id == "9315bc67-33e7-42e9-8dea-e022f56dabfa"
   end
 
 private
