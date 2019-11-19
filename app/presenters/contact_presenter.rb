@@ -99,7 +99,10 @@ class ContactPresenter < ContentItemPresenter
     when "k2c"
       "https://hmpowebchat.klick2contact.com/v03/providers/serviceStatus/v3/#{webchat_id}.json"
     else
-      "https://www.tax.service.gov.uk/csp-partials/availability/#{webchat_id}"
+      # "https://www.tax.service.gov.uk/csp-partials/availability/#{webchat_id}"
+
+
+      "https://hmrc-uk.digital.nuance.com/tagserver/launch/agentAvailability?agentGroupID=#{webchat_id}"
     end
   end
 
@@ -108,7 +111,9 @@ class ContactPresenter < ContentItemPresenter
     when "k2c"
       "https://hmpowebchat.klick2contact.com/v03/providers/HMPO2/window/windowChat.html"
     else
-      "https://www.tax.service.gov.uk/csp-partials/open/#{webchat_id}"
+      # "https://www.tax.service.gov.uk/csp-partials/open/#{webchat_id}"
+
+      "https://hmrc-uk.digital.nuance.com/tagserver/launch/agentAvailability?agentGroupID=#{webchat_id}"
     end
   end
 
@@ -145,16 +150,28 @@ private
 
   def webchat_ids
     {
-      '/government/organisations/hm-revenue-customs/contact/child-benefit' => 1027,
-      '/government/organisations/hm-revenue-customs/contact/income-tax-enquiries-for-individuals-pensioners-and-employees' => 1030,
-      '/government/organisations/hm-revenue-customs/contact/vat-online-services-helpdesk' => 1026,
-      '/government/organisations/hm-revenue-customs/contact/national-insurance-numbers' => 1021,
-      '/government/organisations/hm-revenue-customs/contact/self-assessment' => 1004,
-      '/government/organisations/hm-revenue-customs/contact/tax-credits-enquiries' => 1016,
-      '/government/organisations/hm-revenue-customs/contact/vat-enquiries' => 1028,
-      '/government/organisations/hm-revenue-customs/contact/customs-international-trade-and-excise-enquiries' => 1034,
-      '/government/organisations/hm-revenue-customs/contact/employer-enquiries' => 1023,
-      '/government/organisations/hm-revenue-customs/contact/online-services-helpdesk' => 1003,
+      # '/government/organisations/hm-revenue-customs/contact/child-benefit' => 1027,
+      # '/government/organisations/hm-revenue-customs/contact/income-tax-enquiries-for-individuals-pensioners-and-employees' => 1030,
+      # '/government/organisations/hm-revenue-customs/contact/vat-online-services-helpdesk' => 1026,
+      # '/government/organisations/hm-revenue-customs/contact/national-insurance-numbers' => 1021,
+      # '/government/organisations/hm-revenue-customs/contact/self-assessment' => 1004,
+      # '/government/organisations/hm-revenue-customs/contact/tax-credits-enquiries' => 1016,
+      # '/government/organisations/hm-revenue-customs/contact/vat-enquiries' => 1028,
+      # '/government/organisations/hm-revenue-customs/contact/customs-international-trade-and-excise-enquiries' => 1034,
+      # '/government/organisations/hm-revenue-customs/contact/employer-enquiries' => 1023,
+      # '/government/organisations/hm-revenue-customs/contact/online-services-helpdesk' => 1003,
+      # '/government/organisations/hm-passport-office/contact/passport-advice-and-complaints' => 72
+
+      '/government/organisations/hm-revenue-customs/contact/child-benefit' => 'BAC-TC',
+      '/government/organisations/hm-revenue-customs/contact/income-tax-enquiries-for-individuals-pensioners-and-employees' => 'PTO-PAYE',
+      '/government/organisations/hm-revenue-customs/contact/vat-online-services-helpdesk' => 'BTAC-VAT',
+      '/government/organisations/hm-revenue-customs/contact/national-insurance-numbers' => 'PTO-NI',
+      '/government/organisations/hm-revenue-customs/contact/self-assessment' => 'PTO-SA',
+      '/government/organisations/hm-revenue-customs/contact/tax-credits-enquiries' => 'BAC-TC',
+      '/government/organisations/hm-revenue-customs/contact/vat-enquiries' => 'BTAC-VAT',
+      '/government/organisations/hm-revenue-customs/contact/customs-international-trade-and-excise-enquiries' => 'BTAC-EXC',
+      '/government/organisations/hm-revenue-customs/contact/employer-enquiries' => 'PTO-EHL',
+      '/government/organisations/hm-revenue-customs/contact/online-services-helpdesk' => 'PTO-OSH',
       '/government/organisations/hm-passport-office/contact/passport-advice-and-complaints' => 72
     }
   end

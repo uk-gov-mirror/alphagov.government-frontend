@@ -13,7 +13,9 @@
       "BUSY",
       "UNAVAILABLE",
       "AVAILABLE",
-      "ERROR"
+      "ERROR",
+      "ONLINE",
+      "OFFLINE"
     ]
     var $el                 = $(options.$el)
     var chatProvider        = $el.attr('data-chat-provider')
@@ -23,6 +25,10 @@
     var webchatStateClass   = 'js-webchat-advisers-'
     var intervalID          = null
     var lastRecordedState   = null
+
+    var businessUnitID      = "19001214"
+    var siteID              = "10006719"
+    var agentGroupID        = ""
 
     function init () {
       if (!availabilityUrl || !openUrl) throw 'urls for webchat not defined'
@@ -40,7 +46,8 @@
           break;
         default:
           // defaults to HMRC
-          global.open(openUrl, 'newwin', 'width=200,height=100')
+          window.location.href = ('https://tax.service.gov.uk?businessUnitID=' + businessUnitID + '&siteID=' + siteID + "&agentGroupID=" + agentGroupID ) //needs nuance page
+          //global.open(openUrl, 'newwin', 'width=200,height=100')
       }
       trackEvent('opened')
     }
@@ -162,12 +169,13 @@
     }
 
     function hmrcAvailability(){
+      agentGroupID = availabilityUrl.split('?')[1].split("=")[1]
       var ajaxConfig = {
-        url: availabilityUrl,
+        url: availabilityUrl + "&siteID=" + siteID + "&businessUnitID=" + businessUnitID,
         type: 'GET',
         timeout: AJAX_TIMEOUT,
         success: apiSuccess,
-        error: apiError
+        //error: apiError
       }
       $.ajax(ajaxConfig)
     }
@@ -186,8 +194,30 @@
         }
 
     function apiSuccess (result) {
-      var validState  = API_STATES.indexOf(result.response) != -1
-      var state       = validState ? result.response : "ERROR"
+      var validState  = API_STATES.indexOf(result.status.toUpperCase()) != -1
+      var state       = ""
+      
+      state = validState ? result.status : "ERROR"
+
+      if (result.inHOP){
+
+        if(result.availability == "true"){
+                if(result.status == "online"){
+                  state="AVAILABLE"
+                }
+                if (result.status == "busy"){
+                    state="BUSY"
+                }
+                if (result.status == "offline"){
+                    state="UNAVAILABLE"
+                }
+          }else{
+            state="UNAVAILABLE"
+          }
+      }else{
+        state = "UNAVAILABLE"
+      }
+
       advisorStateChange(state)
     }
 
