@@ -46,8 +46,7 @@
           break;
         default:
           // defaults to HMRC
-          window.location.href = ('https://tax.service.gov.uk?businessUnitID=' + businessUnitID + '&siteID=' + siteID + "&agentGroupID=" + agentGroupID ) //needs nuance page
-          //global.open(openUrl, 'newwin', 'width=200,height=100')
+          window.location.href = ('https://www.tax.service.gov.uk/check-income-tax/webchat-poc?url=' + openUrl)
       }
       trackEvent('opened')
     }
@@ -196,7 +195,7 @@
     function apiSuccess (result) {
       var validState  = API_STATES.indexOf(result.status.toUpperCase()) != -1
       var state       = ""
-      
+
       state = validState ? result.status : "ERROR"
 
       if (result.inHOP){
