@@ -22,16 +22,32 @@ describe('Nuance', function () {
 
   it('should return busy if agent is busy', function () {
     var result = {
-      response: "BUSY"
+      inHOP: "true",
+      status: "busy",
+      availability: "true"
     }
+
+    result = JSON.stringify(result);
 
     expect(nuance.apiResponseSuccess(result).status).toBe("BUSY")
   })
 
-  it('should return error if invalid state is given', function () {
+  it('should return unavailable if agent is unavailable', function () {
     var result = {
-      response: "THIS_IS_INVALID"
+      inHOP: "true",
+      status: "offline",
+      availability: "false"
     }
+
+    result = JSON.stringify(result);
+
+    expect(nuance.apiResponseSuccess(result).status).toBe("UNAVAILABLE")
+  })
+
+  it('should return error if invalid state is given', function () {
+    var result = {}
+
+    result = { JSON.stringify(result) };
 
     expect(nuance.apiResponseSuccess(result).status).toBe("ERROR")
   })
