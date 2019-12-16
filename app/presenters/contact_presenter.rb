@@ -174,6 +174,8 @@ private
       @webchat_provider = WebchatProviders::EgainPresenter.new(content_item["base_path"])
     elsif @webchat_provider_id == :k2c
       @webchat_provider = WebchatProviders::KlickTwoContactPresenter.new(content_item["base_path"])
+    elsif @webchat_provider_id == :nuance
+      @webchat_provider = WebchatProviders::NuancePresenter.new(content_item["base_path"])
     end
     @webchat_provider
   end
@@ -195,6 +197,26 @@ private
   def webchat_providers
     {
       "egain": [
+        # "/government/organisations/hm-revenue-customs/contact/child-benefit",
+        # "/government/organisations/hm-revenue-customs/contact/income-tax-enquiries-for-individuals-pensioners-and-employees",
+        # "/government/organisations/hm-revenue-customs/contact/vat-online-services-helpdesk",
+        # "/government/organisations/hm-revenue-customs/contact/national-insurance-numbers",
+        # "/government/organisations/hm-revenue-customs/contact/self-assessment",
+        # "/government/organisations/hm-revenue-customs/contact/tax-credits-enquiries",
+        # "/government/organisations/hm-revenue-customs/contact/vat-enquiries",
+        # "/government/organisations/hm-revenue-customs/contact/customs-international-trade-and-excise-enquiries",
+        # "/government/organisations/hm-revenue-customs/contact/employer-enquiries",
+        # "/government/organisations/hm-revenue-customs/contact/online-services-helpdesk",
+        # "/government/organisations/hm-revenue-customs/contact/charities-and-community-amateur-sports-clubs-cascs",
+        # "/government/organisations/hm-revenue-customs/contact/enquiries-from-employers-with-expatriate-employees",
+        # "/government/organisations/hm-revenue-customs/contact/share-schemes-for-employees",
+        # "/government/organisations/hm-revenue-customs/contact/non-uk-expatriate-employees-expats",
+        # "/government/organisations/hm-revenue-customs/contact/non-resident-landlords",
+      ],
+      "k2c": [
+        "/government/organisations/hm-passport-office/contact/passport-advice-and-complaints",
+      ],
+      "nunance": [
         "/government/organisations/hm-revenue-customs/contact/child-benefit",
         "/government/organisations/hm-revenue-customs/contact/income-tax-enquiries-for-individuals-pensioners-and-employees",
         "/government/organisations/hm-revenue-customs/contact/vat-online-services-helpdesk",
@@ -210,9 +232,6 @@ private
         "/government/organisations/hm-revenue-customs/contact/share-schemes-for-employees",
         "/government/organisations/hm-revenue-customs/contact/non-uk-expatriate-employees-expats",
         "/government/organisations/hm-revenue-customs/contact/non-resident-landlords",
-      ],
-      "k2c": [
-        "/government/organisations/hm-passport-office/contact/passport-advice-and-complaints",
       ],
     }
   end
