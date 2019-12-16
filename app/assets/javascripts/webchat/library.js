@@ -19,7 +19,11 @@
     var lastRecordedState   = null
     var webchatProvider = null;
 
-    if (chatProvider === "k2c") {
+    if (chatProvider === "nuance") {
+      webchatProvider = new Nuance({
+        openUrl: openUrl
+      })
+    } else if (chatProvider === "k2c") {
       webchatProvider = new Klick2Contact();
     } else {
       webchatProvider = new Egain({
