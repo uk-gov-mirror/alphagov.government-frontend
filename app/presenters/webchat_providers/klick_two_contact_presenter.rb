@@ -16,6 +16,7 @@ module WebchatProviders
       {
         "open-url": open_url,
         "availability-url": availability_url,
+        "static-dept": "712"
       }
     end
 
