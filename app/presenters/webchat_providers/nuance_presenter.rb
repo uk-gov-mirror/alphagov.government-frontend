@@ -14,10 +14,15 @@ module WebchatProviders
       "/contact#{@base_path.split('/contact')[1]}"
     end
 
+    def redirect_url
+      "http://www.qa.tax.service.gov.uk/ask-hmrc/webchat"
+    end
+
     def config
       {
         "open-url": open_url,
         "availability-url": availability_url,
+        "redirect-url": redirect_url,
       }
     end
 

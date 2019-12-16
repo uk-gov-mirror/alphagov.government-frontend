@@ -43,6 +43,5 @@ function  Nuance(options) {
 }
 
  Nuance.prototype.handleOpenChat = function(global) {
-  //global.open(this.openUrl, 'newwin', 'width=200,height=100')
-  window.location.href = ('https://www.tax.service.gov.uk/check-income-tax/webchat-poc?url=' + this.openUrl)
+  window.location.href = (document.querySelector.dataset.redirectUrl + '?url=' + this.openUrl)
 }
