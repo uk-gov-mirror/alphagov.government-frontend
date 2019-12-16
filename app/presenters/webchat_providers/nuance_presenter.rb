@@ -27,7 +27,7 @@ module WebchatProviders
 
     def webchat_ids
       {
-        "/government/organisations/hm-revenue-customs/contact/child-benefit" => 10006721,
+        "/government/organisations/hm-revenue-customs/contact/child-benefit" => "BAC-TC",
         "/government/organisations/hm-revenue-customs/contact/income-tax-enquiries-for-individuals-pensioners-and-employees" => "PTO-PAYE",
         "/government/organisations/hm-revenue-customs/contact/vat-online-services-helpdesk" => "BTAC-VAT",
         "/government/organisations/hm-revenue-customs/contact/national-insurance-numbers" => "PTO-NI",
@@ -37,8 +37,6 @@ module WebchatProviders
         "/government/organisations/hm-revenue-customs/contact/customs-international-trade-and-excise-enquiries" => "BTAC-EXC",
         "/government/organisations/hm-revenue-customs/contact/employer-enquiries" => "PTO-EHL",
         "/government/organisations/hm-revenue-customs/contact/online-services-helpdesk" => "PTO-OSH",
-        "/government/organisations/hm-passport-office/contact/passport-advice-and-complaints" => 72,
-        "/government/organisations/hm-revenue-customs/contact/online-services-helpdesk" => 1003,
         "/government/organisations/hm-revenue-customs/contact/charities-and-community-amateur-sports-clubs-cascs" => 1087,
         "/government/organisations/hm-revenue-customs/contact/enquiries-from-employers-with-expatriate-employees" => 1089,
         "/government/organisations/hm-revenue-customs/contact/share-schemes-for-employees" => 1088,
