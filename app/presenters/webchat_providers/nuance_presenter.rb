@@ -7,13 +7,11 @@ module WebchatProviders
     def availability_url
       # "https://www.tax.service.gov.uk/csp-partials/availability/#{webchat_id}"
       "https://hmrc-uk.digital.nuance.com/tagserver/launch/agentAvailability?agentGroupID=#{webchat_id}&businessUnitID=19001214&siteID=10006719"
-
     end
 
     def open_url
       #{}"https://www.tax.service.gov.uk/csp-partials/open/#{webchat_id}"
-      "/contact#{@base_path.split("/contact")[1]}"
-
+      "/contact#{@base_path.split('/contact')[1]}"
     end
 
     def config
