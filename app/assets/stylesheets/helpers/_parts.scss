@@ -5,7 +5,7 @@
     padding-bottom: govuk-spacing(3);
 
     @include govuk-media-query($from: tablet) {
-      margin-top: 0;
+      margin-top: govuk-spacing(1);
       margin-bottom: 0;
       padding-bottom: govuk-spacing(3);
     }
