@@ -1,3 +1,5 @@
+/* global jQuery, GOVUK */
+
 //= require govuk_publishing_components/lib
 //= require govuk_publishing_components/components/button
 //= require govuk_publishing_components/components/details
@@ -15,6 +17,6 @@ jQuery(function ($) {
   var $form = $('.js-service-sign-in-form')
 
   if ($form.length) {
-    new GOVUK.SetGaClientIdOnForm({ $form: $form })
+    GOVUK.setGaClientIdOnForm({ $form: $form })
   }
 })
