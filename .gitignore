@@ -18,3 +18,5 @@
 /public/government-frontend
 /test/wraith/wip*
 shots/*
+/node_modules
+/yarn-error.log
