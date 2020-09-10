@@ -25,15 +25,7 @@
     .direction-rtl & {
       float: left;
     }
-  }
 
-  .contents-list-container {
-    .direction-rtl & {
-      float: right;
-    }
-  }
-
-  .main-content-container {
     width: 100%;
     padding: 0 15px;
     box-sizing: border-box;
