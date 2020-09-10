@@ -22,7 +22,6 @@ group :development, :test do
   gem "jasmine"
   gem "jasmine_selenium_runner", require: false
   gem "rubocop-govuk"
-  gem "scss_lint-govuk", require: false
 end
 
 group :development do
