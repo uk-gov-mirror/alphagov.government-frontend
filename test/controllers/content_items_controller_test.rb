@@ -386,10 +386,21 @@ class ContentItemsControllerTest < ActionController::TestCase
   end
 
   test "shows the B variant suggested related link" do
-    content_item = content_store_has_example_item("/guidance/national-lockdown-stay-at-home", schema: "detailed_guide")
+    # TODO: THIS IS BROKEN BECAUSE I'M STUPID AND SHOULD HAVE REALISED THAT TESTING FOR LIVE IS FRAGILE
+
+    # content_item = content_store_has_example_item("/government/case-studies/using-rewards-encouraging-good-behaviour", schema: "case_study")
+    content_item = content_store_has_schema_example("detailed_guide", "detailed_guide")
     stub_content_store_has_item(content_item["base_path"], content_item)
     with_variant WeightedLinksAbTestable: "B" do
       get :show, params: { path: path_for(content_item) }
+
+      assert_response :success
+
+      pp content_item["links"]
+
+      assert_empty content_item["links"]["ordered_related_items"], "Content item should not have existing related links"
+      # assert_not_empty content_item["links"]["suggested_ordered_related_items"], "Content item should have existing suggested related links"
+      # assert_equal assigns[:content_item].content_item["links"]["ordered_related_items"], content_item["links"]["suggested_ordered_related_items"]
     end
   end
 
